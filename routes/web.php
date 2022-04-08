@@ -6,16 +6,10 @@ use App\Http\Controllers\CardsController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ExtensionController;
-use App\Http\Controllers\FormsController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\MiscellaneousController;
-use App\Http\Controllers\PageLayoutController;
-use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserInterfaceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +34,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('settings', SettingController::class);
 });
 /* Route Dashboards */
 

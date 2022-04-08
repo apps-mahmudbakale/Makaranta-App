@@ -44,6 +44,10 @@
                        </li>
                    </ul>
                </li>
+               <li class=" nav-item">
+                    <a class="d-flex align-items-center" href="{{route('admin.settings.index')}}"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Settings">Setting</span></a>
+                </li>
+
                {{--  <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Email</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="app-chat.html"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
