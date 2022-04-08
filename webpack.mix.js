@@ -31,7 +31,8 @@ mix.styles([
     'public/app-assets/css/pages/authentication.css',
     'public/assets/css/style.css',
     'public/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css',
-    'public/css/datatables.min.css'
+    'public/css/datatables.min.css',
+    'public/app-assets/vendors/css/forms/select/select2.min.css'
     ], 'public/css/app.css');
 
  mix.scripts([
@@ -44,5 +45,7 @@ mix.styles([
       'public/app-assets/vendors/js/forms/validation/jquery.validate.min.js',
       'public/app-assets/js/scripts/pages/auth-login.js',
       'public/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js',
+      'public/app-assets/vendors/js/forms/select/select2.full.min.js',
+      'public/app-assets/js/scripts/forms/form-select2.js',
       'public/js/datatables.min.js'
    ], 'public/js/app.js');

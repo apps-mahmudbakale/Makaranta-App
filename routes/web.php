@@ -12,6 +12,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\PageLayoutController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserInterfaceController;
@@ -38,6 +39,7 @@ Route::get('/', function (){
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
 });
 /* Route Dashboards */
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFormRequest;
+use App\Http\Requests\UserUpdateFormRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,6 +15,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $this->authorize('read-users');
@@ -26,7 +34,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create-users');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -35,9 +45,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //
+        $this->authorize('create-users');
+
+        $user = User::create($request->all());
+        $user->syncRoles($request->input('roles', []));
+
+        return redirect()->route('admin.users.index')->with('success', 'User Added');
     }
 
     /**
@@ -46,9 +61,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -57,9 +72,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $this->authorize('update-users');
+
+        $roles = Role::all()->pluck('name', 'id');
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -69,9 +88,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateFormRequest $request, User $user)
     {
-        //
+        $this->authorize('update-users');
+
+        $user->update($request->all());
+        $user->syncRoles($request->input('roles', []));
+
+        return redirect()->route('admin.users.index')->with('success','User Updated');
+
     }
 
     /**
@@ -80,8 +105,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success','User Deleted');
     }
 }

@@ -40,19 +40,7 @@
                    <ul class="menu-content">
                        <li><a class="d-flex align-items-center" href="{{route('admin.users.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Users</span></a>
                        </li>
-                       <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="View">View</span></a>
-                           <ul class="menu-content">
-                               <li><a class="d-flex align-items-center" href="app-user-view-account.html"><span class="menu-item text-truncate" data-i18n="Account">Account</span></a>
-                               </li>
-                               <li><a class="d-flex align-items-center" href="app-user-view-security.html"><span class="menu-item text-truncate" data-i18n="Security">Security</span></a>
-                               </li>
-                               <li><a class="d-flex align-items-center" href="app-user-view-billing.html"><span class="menu-item text-truncate" data-i18n="Billing &amp; Plans">Billing &amp; Plans</span></a>
-                               </li>
-                               <li><a class="d-flex align-items-center" href="app-user-view-notifications.html"><span class="menu-item text-truncate" data-i18n="Notifications">Notifications</span></a>
-                               </li>
-                               <li><a class="d-flex align-items-center" href="app-user-view-connections.html"><span class="menu-item text-truncate" data-i18n="Connections">Connections</span></a>
-                               </li>
-                           </ul>
+                       <li><a class="d-flex align-items-center" href="{{route('admin.roles.index')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Roles</span></a>
                        </li>
                    </ul>
                </li>

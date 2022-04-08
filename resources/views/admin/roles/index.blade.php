@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'User List')
+@section('title', 'Roles List')
 @section('content')
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -10,12 +10,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Users</h2>
+                        <h2 class="content-header-title float-start mb-0">Roles</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Users
+                                <li class="breadcrumb-item active">Roles
                                 </li>
                        
                             </ol>
@@ -31,24 +31,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Users</h4>
+                                <h4 class="card-title">Roles</h4>
                                 <div class="ml-5">
-                                    <a href="{{route('admin.users.create')}}" class="dt-button add-new btn btn-primary">
-                                     <span><i data-feather="user-plus"></i> Add New User</span>
+                                    <a href="{{route('admin.roles.create')}}" class="dt-button add-new btn btn-primary">
+                                     <span><i data-feather="shield"></i> Add New Role</span>
                                     </a>
-                                    <div class="btn-group">
-                                            <button type="button" class="btn btn-outline-secondary waves-effect"><i data-feather="download"></i> Export</button>
-                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split waves-effect" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <span class="visually-hidden">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#"><i data-feather="printer"></i> Printer</a>
-                                                <a class="dropdown-item" href="#"><i data-feather="file-text"></i> Csv</a>
-                                                <a class="dropdown-item" href="#"><i data-feather="file-text"></i> Excel</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#"><i data-feather="file"></i> Pdf</a>
-                                            </div>
-                                        </div> 
                                 </div>
                             </div>
                             <div class="card-body">
@@ -58,42 +45,36 @@
                                     <tr>
                                         <th>S/N</th>
                                         <th>Name</th>
-                                        <th>Role</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                     <tbody>
-                                    @foreach($users as $user)
+                                    @foreach($roles as $role)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>
-                                            @foreach($user->roles as $key => $role)
-                                            <span class="badge rounded-pill bg-success">{{ $role->name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>{{$user->created_at->diffForHumans()}}</td>
+                                        <td>{{$role->name}}</td>
+                                        <td>{{$role->created_at->diffForHumans()}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
                                                 <i data-feather="more-vertical"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="{{route('admin.users.show', $user->id)}}">
+                                                <a class="dropdown-item" href="{{route('admin.roles.show', $role->id)}}">
                                                     <i data-feather="eye" class="me-50"></i>
                                                     <span>View</span>
                                                 </a>
-                                                <a class="dropdown-item" href="{{route('admin.users.edit', $user->id)}}">
+                                                <a class="dropdown-item" href="{{route('admin.roles.edit', $role->id)}}">
                                                     <i data-feather="edit-2" class="me-50"></i>
                                                     <span>Edit</span>
                                                 </a>
-                                                <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('del#{{$user->id}}').submit();">
+                                                <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('del#{{$role->id}}').submit();">
                                                     <i data-feather="trash" class="me-50"></i>
                                                     <span>Delete</span>
                                                 </a>
                                             </div>
-                                            <form id="del#{{$user->id}}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure');" style="display: inline-block;">
+                                            <form id="del#{{$role->id}}" action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('Are you sure');" style="display: inline-block;">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
